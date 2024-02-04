@@ -5,13 +5,13 @@ export const apiService = createApi({
   baseQuery: async (args, api, extraOptions) => {
     console.log('baseQuery');
     // Получение состояния store
-    const state = api.getState();
+    // const state = api.getState();
     // Доступ к нужному свойству в store, например, state.settings.apiUrl
     // const baseUrl = state.settings.apiUrl;
 
     // Используем fetchBaseQuery с динамическим baseUrl
     const baseQuery = fetchBaseQuery({
-      baseUrl: 'https://46mspr-3000.csb.app/',
+      baseUrl: 'http://localhost:8000/',
       prepareHeaders: (headers, { getState }) => {
         console.log('======================');
         console.log('prepareHeaders');
@@ -25,5 +25,5 @@ export const apiService = createApi({
   },
   tagTypes: ['User'],
   refetchOnReconnect: true,
-  endpoints: (builder) => ({}),
+  endpoints: () => ({}),
 });
