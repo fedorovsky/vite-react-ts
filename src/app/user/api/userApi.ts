@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { apiService } from '@/core/api/apiService.ts';
 import { UserType } from './types';
 
@@ -18,7 +19,9 @@ export const userApi = apiService.injectEndpoints({
       query: (updatedUser) => ({
         url: `users/${updatedUser.id}`,
         method: 'PUT',
-        body: updatedUser,
+        body: {
+          name: updatedUser.name,
+        },
       }),
       // Оптимистическое начальное обновление
       onQueryStarted: async (updatedUser, { dispatch, queryFulfilled }) => {
@@ -45,7 +48,10 @@ export const userApi = apiService.injectEndpoints({
       query: (newUser) => ({
         url: 'users',
         method: 'POST',
-        body: newUser,
+        body: {
+          id: uuidv4(),
+          ...newUser,
+        },
       }),
       onQueryStarted: async (newUser, { dispatch, queryFulfilled }) => {
         // Здесь начинается оптимистическое обновление

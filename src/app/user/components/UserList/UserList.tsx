@@ -32,7 +32,7 @@ const UserList = () => {
     console.log('id', id);
     updateUser({
       id: id,
-      name: `updated-${new Date().getTime()}`,
+      name: `updated-${Date.now()}`,
     });
   };
 
@@ -42,8 +42,7 @@ const UserList = () => {
   };
 
   const handleClickAdd = () => {
-    const now = new Date().getTime();
-    addUser({ id: now, name: `added-${now}` });
+    addUser({ name: `added-${Date.now()}` });
   };
 
   const toogleFocusOption = () => {
