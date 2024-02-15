@@ -1,30 +1,18 @@
-import * as React from 'react';
-import { useAppDispatch } from '@/core/hooks/useAppDispatch';
-import { userApi } from '@/app/user/api';
 import { UserList } from '@/app/user';
+import { useAppDispatch } from '@/core/hooks/useAppDispatch.ts';
+import { userListModule } from '@/app/user';
 
 export default function App() {
   const dispatch = useAppDispatch();
-  const [isVisibleUserList, setVisibleUserList] = React.useState(false);
 
-  const toggleUserList = () => {
-    setVisibleUserList((s) => !s);
-  };
-
-  const handleClickInvalidate = () => {
-    dispatch(userApi.util.invalidateTags(['User']));
+  const handleClickGetUserList = () => {
+    dispatch(userListModule.asyncActions.getUserList());
   };
 
   return (
     <div>
-      <button onClick={handleClickInvalidate}>Invalidate Tag</button>
-      <button onClick={toggleUserList}>Toggle List</button>
-      {isVisibleUserList && (
-        <>
-          <UserList />
-          <UserList />
-        </>
-      )}
+      <button onClick={handleClickGetUserList}>Get User List</button>
+      <UserList />
     </div>
   );
 }
