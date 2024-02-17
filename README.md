@@ -1,2 +1,4 @@
 
+slice example: https://github.com/fedorovsky/vite-react-ts/tree/slice-example
+
 json-api: http://localhost:8000/
