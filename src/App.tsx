@@ -1,30 +1,32 @@
-import * as React from 'react';
-import { useAppDispatch } from '@/core/hooks/useAppDispatch';
-import { userApi } from '@/app/user/api';
-import { UserList } from '@/app/user';
+import styled from 'styled-components';
+import { Tooltip } from '@/app/Tooltip/Tooltip.tsx';
+
+const Wrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  border: 1px solid blue;
+  padding: 20px;
+  margin-top: 100px;
+`;
+
+const Item = styled.div`
+  width: 50px;
+  height: 50px;
+  border: 1px solid red;
+`;
 
 export default function App() {
-  const dispatch = useAppDispatch();
-  const [isVisibleUserList, setVisibleUserList] = React.useState(false);
-
-  const toggleUserList = () => {
-    setVisibleUserList((s) => !s);
-  };
-
-  const handleClickInvalidate = () => {
-    dispatch(userApi.util.invalidateTags(['User']));
-  };
-
   return (
-    <div>
-      <button onClick={handleClickInvalidate}>Invalidate Tag</button>
-      <button onClick={toggleUserList}>Toggle List</button>
-      {isVisibleUserList && (
-        <>
-          <UserList />
-          <UserList />
-        </>
-      )}
-    </div>
+    <Wrapper>
+      <Tooltip text="hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello ">
+        <Item />
+      </Tooltip>
+      <Tooltip text="hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello ">
+        <Item />
+      </Tooltip>
+      <Tooltip text="hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello ">
+        <Item />
+      </Tooltip>
+    </Wrapper>
   );
 }
