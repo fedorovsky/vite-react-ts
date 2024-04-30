@@ -1,26 +1,64 @@
-import { createSlice } from '@reduxjs/toolkit';
-import * as actionTypes from './constants';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { _SLICE_NAME_ } from './constants';
+import { openModalWithPromise } from './asyncActions';
+import { BillingPack, ModalData } from './types';
+import { deferredObject } from './utils';
+
+console.log('======');
+console.log('deferredObject', deferredObject);
+console.log('======');
 
 type UpsellOffers = {
-  isOpen: boolean;
+  isVisibleModal: boolean;
+  data: ModalData;
 };
 
 const initialState: UpsellOffers = {
-  isOpen: false,
+  isVisibleModal: false,
+  data: {
+    regular: {
+      priceId: 0,
+      customData: '',
+      title: '',
+      items: [],
+    },
+    upsell: {
+      priceId: 0,
+      customData: '',
+      title: '',
+      items: [],
+    },
+  },
 };
 
-const modalSlice = createSlice({
-  name: 'modal',
+export const modalSlice = createSlice({
+  name: _SLICE_NAME_,
   initialState,
-  reducers: {},
+  reducers: {
+    resolveModal(state, action: PayloadAction<BillingPack>) {
+      state.isVisibleModal = false;
+
+      if (deferredObject.resolve) {
+        deferredObject.resolve(action.payload);
+        deferredObject.resolve = null;
+        deferredObject.reject = null;
+      }
+    },
+    rejectModal(state) {
+      state.isVisibleModal = false;
+
+      if (deferredObject.reject) {
+        deferredObject.reject(new Error('error'));
+        deferredObject.resolve = null;
+        deferredObject.reject = null;
+      }
+    },
+  },
   extraReducers: (builder) => {
-    builder
-      .addCase(actionTypes.OPEN_MODAL, (state) => {
-        state.isOpen = true;
-      })
-      .addCase(actionTypes.CLOSE_MODAL, (state) => {
-        state.isOpen = false;
-      });
+    builder.addCase(openModalWithPromise.pending, (state, action) => {
+      state.isVisibleModal = true;
+      state.data = action.meta.arg;
+    });
   },
 });
 

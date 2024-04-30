@@ -1,5 +1,9 @@
 import { RootState } from '@/core/store/store.ts';
 
-export const confirmModal = (state: RootState) => state.upsellOffers;
 
-export const isOpen = (state: RootState) => state.upsellOffers.isOpen;
+export const isVisibleModal = (state: RootState) =>
+  state.upsellOffers.isVisibleModal;
+
+export const regularPack = (state: RootState) => state.upsellOffers.data.regular;
+
+export const upsellPack = (state: RootState) => state.upsellOffers.data.upsell;

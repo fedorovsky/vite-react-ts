@@ -1,4 +1,4 @@
-export const _SLICE_NAME_ = 'modal';
+export const _SLICE_NAME_ = 'upsell-offers';
 
 export const SHOW_MODAL = 'upsellOffers/showModal';
 export const RESOLVE_MODAL = 'upsellOffers/resolve';
