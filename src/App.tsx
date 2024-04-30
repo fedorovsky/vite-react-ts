@@ -1,30 +1,23 @@
-import * as React from 'react';
-import { useAppDispatch } from '@/core/hooks/useAppDispatch';
-import { userApi } from '@/app/user/api';
-import { UserList } from '@/app/user';
+import { confirmModalModule, Modal } from '@/app/confirm-modal';
+import { showModal } from '@/app/confirm-modal/redux/slice.ts';
+import { useAppDispatch } from '@/core/hooks/useAppDispatch.ts';
 
 export default function App() {
   const dispatch = useAppDispatch();
-  const [isVisibleUserList, setVisibleUserList] = React.useState(false);
 
-  const toggleUserList = () => {
-    setVisibleUserList((s) => !s);
-  };
-
-  const handleClickInvalidate = () => {
-    dispatch(userApi.util.invalidateTags(['User']));
+  const triggerModal = async () => {
+    try {
+      const result = await dispatch(showModal()).unwrap();
+      console.log('Modal confirmed:', result);
+    } catch (error) {
+      console.log('Modal cancelled:', error);
+    }
   };
 
   return (
     <div>
-      <button onClick={handleClickInvalidate}>Invalidate Tag</button>
-      <button onClick={toggleUserList}>Toggle List</button>
-      {isVisibleUserList && (
-        <>
-          <UserList />
-          <UserList />
-        </>
-      )}
+      <button onClick={triggerModal}>Show Modal</button>
+      <Modal />
     </div>
   );
 }
