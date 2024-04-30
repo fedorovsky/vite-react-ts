@@ -1,17 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { apiService } from '@/core/api/apiService.ts';
-import { userListModule } from '@/app/user';
-import { confirmModalModule } from '@/app/confirm-modal';
+import { upsellOffersModule } from '@/app/upsell-offers';
+import promiseMiddleware from './promiseMiddlewareTEST.ts';
 
 export const store = configureStore({
   reducer: {
-    [apiService.reducerPath]: apiService.reducer,
-    user: userListModule.reducer,
-    confirmModal: confirmModalModule.reducer,
+    upsellOffers: upsellOffersModule.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiService.middleware),
+    getDefaultMiddleware().concat(promiseMiddleware),
   devTools: true,
 });
 

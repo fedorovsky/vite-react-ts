@@ -1,24 +1,21 @@
 import { useAppSelector } from '@/core/hooks/useAppSelector.ts';
-import { confirmModalModule } from '@/app/confirm-modal';
+import { upsellOffersModule } from '@/app/upsell-offers';
 import { useAppDispatch } from '@/core/hooks/useAppDispatch.ts';
 
 export const Modal = () => {
   const dispatch = useAppDispatch();
-  const isOpen = useAppSelector(confirmModalModule.selectors.isOpen);
-  const callbacks = useAppSelector(confirmModalModule.selectors.callbacks);
+  const isOpen = useAppSelector(upsellOffersModule.selectors.isOpen);
 
   if (!isOpen) {
     return null;
   }
 
   const handleConfirm = () => {
-    callbacks.resolve('confirmed');
-    dispatch(confirmModalModule.actions.clearModal());
+    dispatch({ type: 'upsellOffers/resolve', payload: 'Confirmed' });
   };
 
   const handleCancel = () => {
-    callbacks.reject(new Error('cancelled'));
-    dispatch(confirmModalModule.actions.clearModal());
+    dispatch({ type: 'upsellOffers/reject', payload: 'Cancelled' });
   };
 
   return (
