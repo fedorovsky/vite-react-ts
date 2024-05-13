@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Modal, upsellOffersModule } from '@/app/upsell-offers';
 import { useAppDispatch } from '@/core/hooks/useAppDispatch.ts';
 
@@ -35,18 +36,18 @@ function generateMockData() {
 
 export default function App() {
   const dispatch = useAppDispatch();
+  const [result, setResult] = React.useState('');
 
   const triggerModal = async () => {
     try {
-      console.log('Modal start ======>');
       const result = await dispatch(
         upsellOffersModule.asyncActions.openModalWithPromise(
           generateMockData(),
         ),
       ).unwrap();
-      console.log('Modal confirmed ======>', result);
+      setResult(`Confirmed: ${JSON.stringify(result, null, 2)}`);
     } catch (error) {
-      console.log('Modal cancelled ======>', error);
+      setResult(`Rejected`);
     }
   };
 
@@ -59,6 +60,7 @@ export default function App() {
       <button onClick={triggerModal}>Show Modal</button>
       <button onClick={hideModal}>Hide Modal</button>
       <Modal />
+      <pre>{result}</pre>
     </div>
   );
 }
