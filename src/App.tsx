@@ -22,7 +22,7 @@ export default function App() {
           <ModalC />
         </div>
         <div className="w-1/2">
-          <h2 className="border-b-2 pb-1 mb-2">Waiting List</h2>
+          <h2 className="border-b-2 pb-1 mb-2">Waiting List Actions</h2>
           <div className="flex gap-1 mb-1">
             <button
               onClick={addToWaitingListModalA}
