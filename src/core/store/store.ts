@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { apiService } from '@/core/api/apiService.ts';
-import { userListModule } from '@/app/user';
+import { globalModalsModule } from '@/app/global-modals';
 
 export const store = configureStore({
   reducer: {
     [apiService.reducerPath]: apiService.reducer,
-    user: userListModule.reducer,
+    globalModals: globalModalsModule.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiService.middleware),

@@ -1,0 +1,16 @@
+export enum GLOBAL_MODAL_NAME {
+  MODAL_A = 'MODAL_A',
+  MODAL_B = 'MODAL_B',
+  MODAL_C = 'MODAL_C',
+}
+
+const { MODAL_A, MODAL_B, MODAL_C } = GLOBAL_MODAL_NAME;
+
+export const PRIORITY_MODALS_CONFIG: Record<
+  GLOBAL_MODAL_NAME,
+  GLOBAL_MODAL_NAME[]
+> = {
+  [MODAL_A]: [],
+  [MODAL_B]: [MODAL_A],
+  [MODAL_C]: [MODAL_B],
+};
