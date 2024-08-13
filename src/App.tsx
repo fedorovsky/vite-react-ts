@@ -1,4 +1,4 @@
-import { Debugger } from '@/app/global-modals/components/Debugger.tsx';
+import { Debugger } from '@/app/global-modals/components/debugger/Debugger.tsx';
 import { Controls } from '@/app/global-modals/components/controls/Controls.tsx';
 import { Modals } from '@/app/global-modals/components/modals/Modals.tsx';
 

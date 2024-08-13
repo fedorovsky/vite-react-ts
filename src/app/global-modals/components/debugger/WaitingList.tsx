@@ -3,9 +3,9 @@ import {
   GLOBAL_MODAL_NAME,
   usePriorityModal,
 } from '@/app/global-modals';
-import { useAppSelector } from '@/core/hooks/useAppSelector';
+import { useAppSelector } from '@/core/hooks/useAppSelector.ts';
 
-export const Debugger = () => {
+export const WaitingList = () => {
   const waitingList = useAppSelector(globalModalsModule.selectors.waitingList);
   return (
     <div>
