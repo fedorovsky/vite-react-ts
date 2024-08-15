@@ -16,9 +16,22 @@ export default function App() {
   };
 
   return (
-    <div>
-      <button onClick={handleClickInvalidate}>Invalidate Tag</button>
-      <button onClick={toggleUserList}>Toggle List</button>
+    <div className="p-1">
+      <div className="flex gap-1">
+        <button
+          onClick={handleClickInvalidate}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+        >
+          Invalidate Tag
+        </button>
+        <button
+          onClick={toggleUserList}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+        >
+          Toggle List
+        </button>
+      </div>
+
       {isVisibleUserList && (
         <>
           <UserList />
