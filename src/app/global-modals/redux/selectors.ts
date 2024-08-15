@@ -12,9 +12,9 @@ export const waitingList = createSelector(
 
 export const isPriorityModal = (modalName: GLOBAL_MODAL_NAME) =>
   createSelector(waitingList, (waitingList) => {
-    const priorityModals = PRIORITY_MODALS_CONFIG[modalName];
+    const priorityModalsConfig = PRIORITY_MODALS_CONFIG[modalName];
     const hasHigherPriorityModals = lookHigherPriorityModals(
-      priorityModals,
+      priorityModalsConfig,
       waitingList,
     );
     return waitingList.includes(modalName) && !hasHigherPriorityModals;
