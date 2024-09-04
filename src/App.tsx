@@ -1,30 +1,29 @@
 import * as React from 'react';
-import { useAppDispatch } from '@/core/hooks/useAppDispatch';
-import { userApi } from '@/app/user/api';
-import { UserList } from '@/app/user';
+import { FeatureOne } from '@/app/feature-one';
+import { FeatureTwo } from '@/app/feature-two';
+import { useState } from 'react';
 
 export default function App() {
-  const dispatch = useAppDispatch();
-  const [isVisibleUserList, setVisibleUserList] = React.useState(false);
+  const [isOpenFeatureOne, setIsOpenFeatureOne] = useState(true);
+  const [isOpenFeatureTwo, setIsOpenFeatureTwo] = useState(false);
 
-  const toggleUserList = () => {
-    setVisibleUserList((s) => !s);
-  };
-
-  const handleClickInvalidate = () => {
-    dispatch(userApi.util.invalidateTags(['User']));
-  };
+  const handleClickToggleFeatureOne = () => setIsOpenFeatureOne((s) => !s);
+  const handleClickToggleFeatureTwo = () => setIsOpenFeatureTwo((s) => !s);
 
   return (
     <div>
-      <button onClick={handleClickInvalidate}>Invalidate Tag</button>
-      <button onClick={toggleUserList}>Toggle List</button>
-      {isVisibleUserList && (
-        <>
-          <UserList />
-          <UserList />
-        </>
-      )}
+      <div>
+        <button onClick={handleClickToggleFeatureOne}>
+          Toggle Feature One
+        </button>
+        <button onClick={handleClickToggleFeatureTwo}>
+          Toggle Feature Two
+        </button>
+      </div>
+      <div>
+        {isOpenFeatureOne && <FeatureOne />}
+        {isOpenFeatureTwo && <FeatureTwo />}
+      </div>
     </div>
   );
 }
