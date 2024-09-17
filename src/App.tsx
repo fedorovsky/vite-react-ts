@@ -27,7 +27,7 @@ export default function App() {
           Toggle Feature Two
         </button>
       </div>
-      <div className="flex">
+      <div className="flex gap-2">
         {isOpenFeatureOne && <FeatureOne />}
         {isOpenFeatureTwo && <FeatureTwo />}
       </div>

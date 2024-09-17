@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { delay } from '@/shared/utils/delay.ts';
 import { useEffect, useState } from 'react';
 
 interface User {
