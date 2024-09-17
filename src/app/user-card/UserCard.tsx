@@ -1,5 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 interface User {
   id: string;
   name: string;
@@ -10,15 +12,32 @@ export const UserCard = ({ user }: { user: User }) => {
 
   const deleteUserMutation = useMutation({
     mutationFn: async (userId: string) => {
+      await delay(2000);
       const response = await fetch(`http://localhost:8000/users/${userId}`, {
         method: 'DELETE',
       });
       return response.json();
     },
+    onMutate: (userId: string) => {
+      // Optimistically update the cache
+      const previousUsers = queryClient.getQueryData<User[]>(['users']);
+      if (previousUsers) {
+        queryClient.setQueryData(
+          ['users'],
+          previousUsers.filter((user) => user.id !== userId),
+        );
+      }
+      // Return a context with the previous and optimistic data
+      return { previousUsers };
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
     },
-    onError: (error: Error) => {
+    onError: (error: Error, userId: string, context: any) => {
+      // Revert to the previous state in case of an error
+      if (context?.previousUsers) {
+        queryClient.setQueryData(['users'], context.previousUsers);
+      }
       console.error('Error deleting user:', error.message);
     },
   });
