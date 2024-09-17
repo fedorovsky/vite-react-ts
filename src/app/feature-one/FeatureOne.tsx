@@ -1,5 +1,4 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
 
 interface User {
   id: string;
@@ -7,8 +6,6 @@ interface User {
 }
 
 export const FeatureOne = () => {
-  const [addUserInputValue, setAddUserInputValue] = useState('');
-
   const queryClient = useQueryClient();
 
   const query = useQuery({
@@ -18,22 +15,6 @@ export const FeatureOne = () => {
       return response.json();
     },
     // staleTime: 1000,
-  });
-
-  const addUserMutation = useMutation({
-    mutationFn: async (newUser: User) => {
-      const response = await fetch('http://localhost:8000/users', {
-        method: 'POST',
-        body: JSON.stringify(newUser),
-      });
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] });
-    },
-    onError: (error: Error) => {
-      console.error('Error adding user:', error.message);
-    },
   });
 
   const deleteUserMutation = useMutation({
@@ -51,13 +32,6 @@ export const FeatureOne = () => {
     },
   });
 
-  const handleClickAddUser = () => {
-    addUserMutation.mutate({
-      id: Date.now().toString(),
-      name: `${addUserInputValue} - ${Date.now().toString()}`,
-    });
-  };
-
   const handleClickDeleteUser = (userId: string) => {
     deleteUserMutation.mutate(userId);
   };
@@ -65,15 +39,6 @@ export const FeatureOne = () => {
   return (
     <div>
       <h2>Feature One</h2>
-      <div>
-        <input
-          type="text"
-          value={addUserInputValue}
-          onChange={(e) => setAddUserInputValue(e.target.value)}
-        />
-        <button onClick={handleClickAddUser}>Add</button>
-      </div>
-      <br />
       <div>
         {query.data?.map((user) => (
           <div key={user.id}>

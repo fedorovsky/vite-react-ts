@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { FeatureOne } from '@/app/feature-one';
 import { FeatureTwo } from '@/app/feature-two';
-import { useState } from 'react';
+import { AddUser } from '@/app/add-user';
 
 export default function App() {
   const [isOpenFeatureOne, setIsOpenFeatureOne] = useState(true);
@@ -12,6 +12,8 @@ export default function App() {
 
   return (
     <div>
+      <AddUser />
+      <br />
       <div>
         <button onClick={handleClickToggleFeatureOne}>
           Toggle Feature One
