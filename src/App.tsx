@@ -5,24 +5,29 @@ import { AddUser } from '@/app/add-user';
 
 export default function App() {
   const [isOpenFeatureOne, setIsOpenFeatureOne] = useState(true);
-  const [isOpenFeatureTwo, setIsOpenFeatureTwo] = useState(false);
+  const [isOpenFeatureTwo, setIsOpenFeatureTwo] = useState(true);
 
   const handleClickToggleFeatureOne = () => setIsOpenFeatureOne((s) => !s);
   const handleClickToggleFeatureTwo = () => setIsOpenFeatureTwo((s) => !s);
 
   return (
-    <div>
+    <div className="p-2">
       <AddUser />
-      <br />
-      <div>
-        <button onClick={handleClickToggleFeatureOne}>
+      <div className="flex gap-2 my-2">
+        <button
+          onClick={handleClickToggleFeatureOne}
+          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+        >
           Toggle Feature One
         </button>
-        <button onClick={handleClickToggleFeatureTwo}>
+        <button
+          onClick={handleClickToggleFeatureTwo}
+          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+        >
           Toggle Feature Two
         </button>
       </div>
-      <div>
+      <div className="flex">
         {isOpenFeatureOne && <FeatureOne />}
         {isOpenFeatureTwo && <FeatureTwo />}
       </div>

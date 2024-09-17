@@ -36,14 +36,21 @@ export const AddUser = () => {
 
   return (
     <div>
-      <h2>Add User</h2>
-      <div>
+      <h2 className="text-2xl mb-1">Add User</h2>
+      <div className="flex gap-1">
         <input
           type="text"
           value={addUserInputValue}
           onChange={(e) => setAddUserInputValue(e.target.value)}
+          placeholder="UserName"
+          className="border border-gray-300 rounded-md px-4 py-2"
         />
-        <button onClick={handleClickAddUser}>Add</button>
+        <button
+          onClick={handleClickAddUser}
+          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+        >
+          Add
+        </button>
       </div>
     </div>
   );

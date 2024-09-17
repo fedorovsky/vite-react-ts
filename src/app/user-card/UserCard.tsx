@@ -28,10 +28,17 @@ export const UserCard = ({ user }: { user: User }) => {
   };
 
   return (
-    <div>
-      <div>UserName: {user.name}</div>
-      <div>UserId: {user.id}</div>
-      <button onClick={() => handleClickDeleteUser(user.id)}>delete</button>
+    <div className="flex gap-2 p-2 my-1 border-2 rounded">
+      <div>
+        <div>UserName: {user.name}</div>
+        <div>UserId: {user.id}</div>
+      </div>
+      <button
+        onClick={() => handleClickDeleteUser(user.id)}
+        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+      >
+        delete
+      </button>
     </div>
   );
 };

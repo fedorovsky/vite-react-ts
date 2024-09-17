@@ -17,8 +17,8 @@ export const FeatureOne = () => {
   });
 
   return (
-    <div>
-      <h2>Feature One</h2>
+    <div className="my-2 p-2 border-2 rounded">
+      <h2 className="text-2xl">Feature One</h2>
       <div>
         {query.data?.map((user) => <UserCard key={user.id} user={user} />)}
       </div>
