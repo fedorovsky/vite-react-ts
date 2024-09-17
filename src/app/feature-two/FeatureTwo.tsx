@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
+import { UserCard } from '@/app/user-card';
 
 interface User {
-  id: number;
+  id: string;
   name: string;
 }
 
@@ -22,7 +23,7 @@ export const FeatureTwo = () => {
     <div>
       <h2>Feature Two</h2>
       <div>
-        {query.data?.map((user) => <div key={user.id}>{user.name}</div>)}
+        {query.data?.map((user) => <UserCard key={user.id} user={user} />)}
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export const AddUser = () => {
   const handleClickAddUser = () => {
     addUserMutation.mutate({
       id: Date.now().toString(),
-      name: `${addUserInputValue} - ${Date.now().toString()}`,
+      name: `${addUserInputValue}`,
     });
   };
 
