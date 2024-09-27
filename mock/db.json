@@ -1,8 +1,24 @@
 {
   "users": [
     {
-      "name": "39847",
-      "id": "1726684132180"
+      "id": "1726684923253",
+      "name": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+    },
+    {
+      "id": "1727464744812",
+      "name": "12"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "Hello World",
+      "userId": 1
+    },
+    {
+      "id": "2",
+      "title": "JSON-Server is awesome",
+      "userId": 2
     }
   ]
 }
