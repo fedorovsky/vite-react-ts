@@ -1,28 +1,28 @@
 import * as React from 'react';
 import { useAppDispatch } from '@/core/hooks/useAppDispatch';
-import { userApi } from '@/app/user/api';
-import { UserList } from '@/app/user';
+import { postsApi } from '@/app/posts/api';
+import { Posts } from '@/app/posts';
 
 export default function App() {
   const dispatch = useAppDispatch();
-  const [isVisibleUserList, setVisibleUserList] = React.useState(false);
+  const [isVisibleList, setVisibleUserList] = React.useState(true);
 
   const toggleUserList = () => {
     setVisibleUserList((s) => !s);
   };
 
   const handleClickInvalidate = () => {
-    dispatch(userApi.util.invalidateTags(['User']));
+    dispatch(postsApi.util.invalidateTags(['Posts']));
   };
 
   return (
     <div>
       <button onClick={handleClickInvalidate}>Invalidate Tag</button>
       <button onClick={toggleUserList}>Toggle List</button>
-      {isVisibleUserList && (
+      {isVisibleList && (
         <>
-          <UserList />
-          <UserList />
+          <Posts />
+          <Posts />
         </>
       )}
     </div>

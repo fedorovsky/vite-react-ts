@@ -6,3 +6,8 @@ Examples:
 [slice-example](https://github.com/fedorovsky/vite-react-ts/tree/slice-example)  
 [global-modals](https://github.com/fedorovsky/vite-react-ts/tree/global-modals)  
 [use-query](https://github.com/fedorovsky/vite-react-ts/tree/use-query)  
+
+
+infinite scrolling  
+/posts?_start=0&_limit=5  
+/posts?_start=5&_limit=5

@@ -13,17 +13,17 @@ export const apiService = createApi({
     const baseQuery = fetchBaseQuery({
       baseUrl: 'http://localhost:8000/',
       prepareHeaders: (headers, { getState }) => {
-        console.log('======================');
-        console.log('prepareHeaders');
-        console.log('headers', headers);
-        console.log('getState', getState());
-        console.log('======================');
+        // console.log('======================');
+        // console.log('prepareHeaders');
+        // console.log('headers', headers);
+        // console.log('getState', getState());
+        // console.log('======================');
         return headers;
       },
     });
     return baseQuery(args, api, extraOptions);
   },
-  tagTypes: ['User'],
+  tagTypes: ['User', 'Posts'],
   refetchOnReconnect: true,
   endpoints: () => ({}),
 });
