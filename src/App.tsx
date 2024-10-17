@@ -1,30 +1,35 @@
 import * as React from 'react';
-import { useAppDispatch } from '@/core/hooks/useAppDispatch';
-import { userApi } from '@/app/user/api';
-import { UserList } from '@/app/user';
+import withErrorBoundaryLogger from '@/app/error-boundary/withErrorBoundaryLogger.tsx';
+
+const TestComponent = withErrorBoundaryLogger(
+  function TestComponent15() {
+    throw new Error('TestComponent-15');
+    return (
+      <div>
+        <h1>Test Component</h1>
+      </div>
+    );
+  },
+  function FallbackComponent() {
+    return (
+      <div>
+        <h1>Fallback</h1>
+      </div>
+    );
+  },
+);
 
 export default function App() {
-  const dispatch = useAppDispatch();
-  const [isVisibleUserList, setVisibleUserList] = React.useState(false);
+  const [isVisible, setVisible] = React.useState(false);
 
-  const toggleUserList = () => {
-    setVisibleUserList((s) => !s);
-  };
-
-  const handleClickInvalidate = () => {
-    dispatch(userApi.util.invalidateTags(['User']));
+  const toggleVisible = () => {
+    setVisible((s) => !s);
   };
 
   return (
     <div>
-      <button onClick={handleClickInvalidate}>Invalidate Tag</button>
-      <button onClick={toggleUserList}>Toggle List</button>
-      {isVisibleUserList && (
-        <>
-          <UserList />
-          <UserList />
-        </>
-      )}
+      <button onClick={toggleVisible}>Toggle</button>
+      {isVisible && <TestComponent />}
     </div>
   );
 }
