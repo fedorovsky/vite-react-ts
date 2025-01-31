@@ -7,7 +7,7 @@ import {
   useDeleteUserMutation,
 } from '@/app/user/api/userApi.ts';
 import { useAppDispatch } from '@/core/hooks/useAppDispatch.ts';
-import * as Styled from './UserList.styled';
+import * as Styled from './user-list.styled.ts';
 
 const UserList = () => {
   const dispatch = useAppDispatch();

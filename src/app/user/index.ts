@@ -1,3 +1,3 @@
-import UserList from '@/app/user/components/UserList';
+import UserList from './components/user-list';
 
 export { UserList };
