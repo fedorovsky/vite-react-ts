@@ -12,6 +12,7 @@ import * as Styled from './UserList.styled';
 const UserList = () => {
   const dispatch = useAppDispatch();
   const [isActiveFocus, setActiveFocus] = React.useState(false);
+
   const {
     data: users,
     error,
@@ -66,7 +67,7 @@ const UserList = () => {
       <div>
         <p>refetchOnFocus: {isActiveFocus ? 'on' : 'off'}</p>
       </div>
-      <button onClick={toogleFocusOption}>Toogle Focus</button>
+      <button onClick={toogleFocusOption}>Toggle Focus</button>
       <button onClick={handleClickAdd}>Add User</button>
       <button onClick={handleRefetch}>refetch</button>
       <button onClick={handleInvalidateQueries}>invalidateQueries</button>
