@@ -6,7 +6,7 @@ export const userApi = apiService.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query<UserType[], void>({
       query: () => 'users',
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 30,
       providesTags: (result) =>
         result
           ? [

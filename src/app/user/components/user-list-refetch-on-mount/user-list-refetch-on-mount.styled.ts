@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const UserList = styled.div`
-  border: 1px solid red;
+  border: 1px solid green;
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  background: floralwhite;
+  background: bisque;
 `;
 
 export const User = styled.div`
