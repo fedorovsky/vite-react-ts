@@ -11,7 +11,7 @@ import * as Styled from './UserList.styled';
 
 const UserList = () => {
   const dispatch = useAppDispatch();
-  const [isActiveFocus, setActivefocus] = React.useState(false);
+  const [isActiveFocus, setActiveFocus] = React.useState(false);
   const {
     data: users,
     error,
@@ -46,7 +46,7 @@ const UserList = () => {
   };
 
   const toogleFocusOption = () => {
-    setActivefocus((s) => !s);
+    setActiveFocus((s) => !s);
   };
 
   const handleRefetch = () => {
