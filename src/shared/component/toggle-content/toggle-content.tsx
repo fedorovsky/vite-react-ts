@@ -1,6 +1,7 @@
 import * as React from 'react';
+import * as Styled from './toggle-content.styled.ts';
 
-export const Switcher = ({
+export const ToggleContent = ({
   children,
   text,
 }: {
@@ -10,9 +11,9 @@ export const Switcher = ({
   const [isVisible, setVisible] = React.useState(false);
 
   return (
-    <div>
+    <Styled.ToggleContent>
       <button onClick={() => setVisible((s) => !s)}>Toggle - {text}</button>
       {isVisible && <div>{children}</div>}
-    </div>
+    </Styled.ToggleContent>
   );
 };

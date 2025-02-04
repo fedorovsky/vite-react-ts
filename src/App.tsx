@@ -2,7 +2,7 @@ import { useAppDispatch } from '@/core/hooks/useAppDispatch';
 import { userApi } from '@/app/user/api';
 import { UserList } from '@/app/user';
 import UserListRefetchOnMount from '@/app/user/components/user-list-refetch-on-mount';
-import { Switcher } from '@/shared/component/switcher.tsx';
+import { ToggleContent } from '@/shared/component/toggle-content';
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -14,16 +14,15 @@ export default function App() {
   return (
     <div>
       <button onClick={handleClickInvalidate}>Invalidate Tag</button>
-
-      <Switcher text="UserList">
+      <ToggleContent text="UserList">
         <UserList />
-      </Switcher>
-      <Switcher text="UserList">
+      </ToggleContent>
+      <ToggleContent text="UserList">
         <UserList />
-      </Switcher>
-      <Switcher text="UserList - refetchOnMountOrArgChange: 10">
+      </ToggleContent>
+      <ToggleContent text="UserList - refetchOnMountOrArgChange: 10">
         <UserListRefetchOnMount />
-      </Switcher>
+      </ToggleContent>
     </div>
   );
 }
