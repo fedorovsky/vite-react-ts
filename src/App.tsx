@@ -14,6 +14,7 @@ export default function App() {
   return (
     <div>
       <button onClick={handleClickInvalidate}>Invalidate Tag</button>
+      <UserList />
       <ToggleContent text="UserList">
         <UserList />
       </ToggleContent>

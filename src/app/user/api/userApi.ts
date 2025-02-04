@@ -57,7 +57,10 @@ export const userApi = apiService.injectEndpoints({
         // Здесь начинается оптимистическое обновление
         const patchResult = dispatch(
           userApi.util.updateQueryData('getUsers', undefined, (draftUsers) => {
-            draftUsers.push(newUser); // Предполагаем, что пользователь добавлен
+            draftUsers.push({
+              id: uuidv4(),
+              ...newUser,
+            });
           }),
         );
 
