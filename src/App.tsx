@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Posts } from '@/app/posts';
-import { apiService } from '@/core/api/apiService.ts';
+import { apiService, invalidateTags } from '@/core/api/apiService.ts';
 import { useAppDispatch } from '@/core/hooks/useAppDispatch.ts';
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
   };
 
   const handleInvalidate = () => {
-    dispatch(apiService.util.invalidateTags(['Posts']));
+    dispatch(apiService.util.invalidateTags([invalidateTags.Posts]));
   };
 
   return (

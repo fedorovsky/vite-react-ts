@@ -1,5 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+export const invalidateTags = {
+  Posts: 'Posts',
+} as const;
+
 export const apiService = createApi({
   reducerPath: 'api',
   baseQuery: async (args, api, extraOptions) => {
@@ -23,7 +27,7 @@ export const apiService = createApi({
     });
     return baseQuery(args, api, extraOptions);
   },
-  tagTypes: ['User', 'Posts'],
+  tagTypes: Object.values(invalidateTags),
   refetchOnReconnect: true,
   endpoints: () => ({}),
 });
