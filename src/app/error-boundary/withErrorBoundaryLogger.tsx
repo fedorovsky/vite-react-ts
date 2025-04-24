@@ -9,7 +9,7 @@ const withErrorBoundaryLogger = <P extends object>(
   return withErrorBoundary(Component, {
     fallbackRender: (props: FallbackProps): React.ReactNode | null =>
       FallbackComponent ? <FallbackComponent {...props} /> : null,
-    onError: (error, info) => {
+    onError: (error) => {
       Sentry.withScope((scope) => {
         scope.setContext('additionalInfo', {
           message: 'Error occurred in React component',

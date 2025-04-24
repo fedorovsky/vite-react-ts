@@ -1,11 +1,26 @@
-json-api: http://localhost:8000/  
+## Install
 
-## General examples  
-[tailwind](https://github.com/fedorovsky/vite-react-ts/tree/tailwind)  
-[async-modal](https://github.com/fedorovsky/vite-react-ts/tree/async-modal)  
-[slice-example](https://github.com/fedorovsky/vite-react-ts/tree/slice-example)  
-[global-modals](https://github.com/fedorovsky/vite-react-ts/tree/global-modals)  
-[use-query](https://github.com/fedorovsky/vite-react-ts/tree/use-query)  
+```aiignore
+npm install --save @sentry/react
+```
 
-## RTK query  
-[infinity-scrolling](https://github.com/fedorovsky/vite-react-ts/tree/infinite-scrolling)
+## Configure SDK
+
+```javascript
+import * as Sentry from "@sentry/react";
+
+Sentry.init({
+  dsn: "https://2d6609979342fa35c40f6812cd4266b3@o525885.ingest.us.sentry.io/4509208310710272",
+  // Setting this option to true will send default PII data to Sentry.
+  // For example, automatic IP address collection on events
+  sendDefaultPii: true
+});
+
+const container = document.getElementById(“app”);
+const root = createRoot(container);
+root.render(<App />);
+```
+
+## Source Maps
+[sentry doc](https://docs.sentry.io/platforms/javascript/guides/react/sourcemaps/)
+
