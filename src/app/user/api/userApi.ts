@@ -1,12 +1,22 @@
 import { v4 as uuidv4 } from 'uuid';
+import * as v from 'valibot';
 import { apiService } from '@/core/api/apiService.ts';
-import { UserType } from './types';
+
+const userSchema = v.object({
+  id: v.string(),
+  name: v.string(),
+  // test: v.string(),
+});
+type User = v.InferOutput<typeof userSchema>;
+
+const usersSchema = v.array(userSchema);
 
 export const userApi = apiService.injectEndpoints({
   endpoints: (builder) => ({
-    getUsers: builder.query<UserType[], void>({
+    getUsers: builder.query<User[], void>({
       query: () => 'users',
       keepUnusedDataFor: 30,
+      responseSchema: usersSchema,
       providesTags: (result) =>
         result
           ? [
