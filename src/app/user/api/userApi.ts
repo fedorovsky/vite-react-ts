@@ -5,7 +5,7 @@ import { apiService } from '@/core/api/apiService.ts';
 const userSchema = v.object({
   id: v.string(),
   name: v.string(),
-  // test: v.string(),
+  test: v.string(),
 });
 type User = v.InferOutput<typeof userSchema>;
 
