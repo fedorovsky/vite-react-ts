@@ -1,5 +1,6 @@
 import * as React from 'react';
 import withErrorBoundaryLogger from '@/app/error-boundary/withErrorBoundaryLogger.tsx';
+import { UserList } from '@/app/user';
 
 const TestComponent = withErrorBoundaryLogger(
   function TestComponent15() {
@@ -30,6 +31,7 @@ export default function App() {
     <div>
       <button onClick={toggleVisible}>Toggle</button>
       {isVisible && <TestComponent />}
+      <UserList />
     </div>
   );
 }
