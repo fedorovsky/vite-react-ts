@@ -1,10 +1,4 @@
 {
-  "users": [
-    {
-      "id": "a0eae54b-3308-4b89-b152-4633d598055e",
-      "name": "added-1707051994031"
-    }
-  ],
   "posts": [
     {"id": "1", "title": "Post-1", "description": "Description-1"},
     {"id": "2", "title": "Post-2", "description": "Description-2"},

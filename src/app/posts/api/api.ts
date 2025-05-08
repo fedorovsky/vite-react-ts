@@ -17,7 +17,7 @@ type PaginationParams = {
   limit: number; // Количество загружаемых постов за раз
 };
 
-export const postsApi = apiService.injectEndpoints({
+const postsApi = apiService.injectEndpoints({
   endpoints: (build) => ({
     getPosts: build.infiniteQuery<Post[], void, PaginationParams>({
       responseSchema: PostsSchema,
