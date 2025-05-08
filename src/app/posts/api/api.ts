@@ -12,15 +12,14 @@ const PostsSchema = v.array(postSchema);
 
 type Post = v.InferOutput<typeof postSchema>;
 
-// Определяем параметры пагинации
-type ProjectsInitialPageParam = {
+type PaginationParams = {
   offset: number; // Смещение для запроса
   limit: number; // Количество загружаемых постов за раз
 };
 
 export const postsApi = apiService.injectEndpoints({
   endpoints: (build) => ({
-    getPosts: build.infiniteQuery<Post[], void, ProjectsInitialPageParam>({
+    getPosts: build.infiniteQuery<Post[], void, PaginationParams>({
       responseSchema: PostsSchema,
       infiniteQueryOptions: {
         initialPageParam: {
