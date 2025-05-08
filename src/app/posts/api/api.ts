@@ -1,5 +1,16 @@
 import { apiService } from '@/core/api/apiService.ts';
-import { Post } from './types';
+
+import * as v from 'valibot';
+
+const postSchema = v.object({
+  id: v.string(),
+  title: v.string(),
+  description: v.string(),
+});
+
+const PostsSchema = v.array(postSchema);
+
+type Post = v.InferOutput<typeof postSchema>;
 
 // Определяем параметры пагинации
 type ProjectsInitialPageParam = {
@@ -10,6 +21,7 @@ type ProjectsInitialPageParam = {
 export const postsApi = apiService.injectEndpoints({
   endpoints: (build) => ({
     getPosts: build.infiniteQuery<Post[], void, ProjectsInitialPageParam>({
+      responseSchema: PostsSchema,
       infiniteQueryOptions: {
         initialPageParam: {
           offset: 0, // Начинаем с 0
