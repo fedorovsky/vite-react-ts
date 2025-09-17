@@ -46,7 +46,7 @@ const UserList = () => {
     addUser({ name: `added-${Date.now()}` });
   };
 
-  const toogleFocusOption = () => {
+  const toggleFocusOption = () => {
     setActiveFocus((s) => !s);
   };
 
@@ -67,7 +67,7 @@ const UserList = () => {
       <div>
         <p>refetchOnFocus: {isActiveFocus ? 'on' : 'off'}</p>
       </div>
-      <button onClick={toogleFocusOption}>Toggle Focus</button>
+      <button onClick={toggleFocusOption}>Toggle Focus</button>
       <button onClick={handleClickAdd}>Add User</button>
       <button onClick={handleRefetch}>refetch</button>
       <button onClick={handleInvalidateQueries}>invalidateQueries</button>
