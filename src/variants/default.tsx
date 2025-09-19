@@ -18,12 +18,18 @@ const serverInputs: InputField[] = [
   { id: '2', amount: 'from server 2' },
 ];
 
+const rewards = [
+  { id: '1', icon: '🍎', title: 'Reward-1' },
+  { id: '2', icon: '🍌', title: 'Reward-2' },
+  { id: '3', icon: '🍇', title: 'Reward-3' },
+];
+
 export default function Default() {
   const methods = useForm<FormValues>({
     defaultValues: { rewards: [] }, // изначально пусто
   });
 
-  const { control, handleSubmit, reset } = methods;
+  const { control, handleSubmit, reset, getValues } = methods;
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -45,34 +51,41 @@ export default function Default() {
 
   return (
     <FormProvider {...methods}>
+      <button
+        type="button"
+        onClick={() => append({ id: Date.now().toString(), amount: '' })}
+      >
+        Add Input
+      </button>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {fields.map((field, index) => (
-          <div key={field.id}>
-            {/* показываем id (только для чтения) */}
-            <span>ID: {field.id}</span>
-            <Controller
-              name={`rewards.${index}.amount`}
-              control={control}
-              render={({ field }) => (
-                <input
-                  type="text"
-                  {...field}
-                  placeholder={`Input ${index + 1}`}
-                />
-              )}
-            />
-            <button type="button" onClick={() => remove(index)}>
-              Remove
-            </button>
-          </div>
-        ))}
+        {fields.map((field, index) => {
+          // ⚡ наш бизнесовый id
+          const businessId = getValues(`rewards.${index}.id`);
+          const reward = rewards.find((m) => m.id === businessId);
 
-        <button
-          type="button"
-          onClick={() => append({ id: Date.now().toString(), amount: '' })}
-        >
-          Add Input
-        </button>
+          return (
+            <div key={field.id}>
+              <div>
+                {reward?.title ?? 'Title'} {reward?.icon ?? 'Icon'}
+              </div>
+              <div>id: {field.id}</div>
+              <Controller
+                name={`rewards.${index}.amount`}
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    {...field}
+                    placeholder={`Input ${index + 1}`}
+                  />
+                )}
+              />
+              <button type="button" onClick={() => remove(index)}>
+                Remove
+              </button>
+            </div>
+          );
+        })}
 
         <button type="submit">Submit</button>
       </form>

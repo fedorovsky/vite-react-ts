@@ -7,7 +7,10 @@ import {
 } from 'react-hook-form';
 
 type InputField = { id: string; amount: string };
-type FormValues = { rewards: InputField[] };
+
+type FormValues = {
+  rewards: InputField[];
+};
 
 // данные от сервера (для формы)
 const serverInputs: InputField[] = [
@@ -16,19 +19,20 @@ const serverInputs: InputField[] = [
   { id: '3', amount: 'from server 3' },
 ];
 
-// метаданные (иконка, заголовок и т.п.)
+// метаданные
 const meta = [
   { id: '1', icon: '🍎', title: 'Apple' },
   { id: '2', icon: '🍌', title: 'Banana' },
   { id: '3', icon: '🍇', title: 'Grapes' },
 ];
 
-export default function DnD() {
+export default function DndMetadata() {
   const methods = useForm<FormValues>({
     defaultValues: { rewards: [] },
   });
 
-  const { control, handleSubmit, reset } = methods;
+  const { control, handleSubmit, reset, getValues } = methods;
+
   const { fields, append, remove, move } = useFieldArray({
     control,
     name: 'rewards',
@@ -48,11 +52,13 @@ export default function DnD() {
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         {fields.map((field, index) => {
-          const extra = meta.find((m) => m.id === field.id);
+          // ⚡ наш бизнесовый id
+          const businessId = getValues(`rewards.${index}.id`);
+          const extra = meta.find((m) => m.id === businessId);
 
           return (
             <div
-              key={field.id}
+              key={field.id} // ⚡ служебный id из useFieldArray
               style={{
                 marginBottom: 8,
                 padding: 8,
@@ -75,7 +81,10 @@ export default function DnD() {
             >
               <span style={{ cursor: 'grab' }}>⇅</span>
 
-              {/* метаданные */}
+              {/* показываем бизнесовый id */}
+              <span>ID: {businessId}</span>
+
+              {/* подмешиваем метаданные */}
               {extra && (
                 <>
                   <span>{extra.icon}</span>
@@ -83,15 +92,17 @@ export default function DnD() {
                 </>
               )}
 
-              {/* id */}
-              <span>ID: {field.id}</span>
-
               {/* поле формы */}
               <Controller
                 name={`rewards.${index}.amount`}
                 control={control}
                 render={({ field }) => (
-                  <input type="text" {...field} placeholder="Amount" />
+                  <input
+                    type="text"
+                    {...field}
+                    placeholder={`Input ${index + 1}`}
+                    onDragStart={(e) => e.stopPropagation()}
+                  />
                 )}
               />
 
