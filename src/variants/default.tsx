@@ -34,6 +34,7 @@ const rewards = [
 // 🔹 Component that renders rewards list
 function RewardsFields() {
   const { control, getValues } = useFormContext<FormValues>(); // ✅ get from context
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'rewards',

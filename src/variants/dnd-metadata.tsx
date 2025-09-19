@@ -51,6 +51,13 @@ export default function DndMetadata() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <button
+          type="button"
+          onClick={() => append({ id: Date.now().toString(), amount: '' })}
+        >
+          Add Input
+        </button>
+
         {fields.map((field, index) => {
           // ⚡ наш бизнесовый id
           const businessId = getValues(`rewards.${index}.id`);
@@ -112,13 +119,6 @@ export default function DndMetadata() {
             </div>
           );
         })}
-
-        <button
-          type="button"
-          onClick={() => append({ id: Date.now().toString(), amount: '' })}
-        >
-          Add Input
-        </button>
 
         <button type="submit">Submit</button>
       </form>
