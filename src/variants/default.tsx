@@ -22,6 +22,13 @@ const rewards = [
   { id: '1', icon: '🍎', title: 'Reward-1' },
   { id: '2', icon: '🍌', title: 'Reward-2' },
   { id: '3', icon: '🍇', title: 'Reward-3' },
+  { id: '4', icon: '🍉', title: 'Reward-4' },
+  { id: '5', icon: '🍓', title: 'Reward-5' },
+  { id: '6', icon: '🍒', title: 'Reward-6' },
+  { id: '7', icon: '🍑', title: 'Reward-7' },
+  { id: '8', icon: '🍍', title: 'Reward-8' },
+  { id: '9', icon: '🥭', title: 'Reward-9' },
+  { id: '10', icon: '🥝', title: 'Reward-10' },
 ];
 
 // 🔹 Component that renders rewards list
