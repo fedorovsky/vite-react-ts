@@ -29,6 +29,7 @@ export default function DnD() {
   });
 
   const { control, handleSubmit, reset, getValues } = methods;
+
   const { fields, append, remove, move } = useFieldArray({
     control,
     name: 'rewards',

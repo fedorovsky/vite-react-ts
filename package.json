@@ -12,8 +12,6 @@
     "json-server": "json-server ./mock/db.json --port=8000"
   },
   "dependencies": {
-    "install": "^0.13.0",
-    "npm": "^11.6.0",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
