@@ -28,7 +28,7 @@ export default function DnD() {
     defaultValues: { rewards: [] },
   });
 
-  const { control, handleSubmit, reset } = methods;
+  const { control, handleSubmit, reset, getValues } = methods;
   const { fields, append, remove, move } = useFieldArray({
     control,
     name: 'rewards',
@@ -47,8 +47,16 @@ export default function DnD() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <button
+          type="button"
+          onClick={() => append({ id: Date.now().toString(), amount: '' })}
+        >
+          Add Input
+        </button>
+
         {fields.map((field, index) => {
-          const extra = meta.find((m) => m.id === field.id);
+          const businessId = getValues(`rewards.${index}.id`);
+          const extra = meta.find((m) => m.id === businessId);
 
           return (
             <div
@@ -73,8 +81,6 @@ export default function DnD() {
                 setDragIndex(null);
               }}
             >
-              <span style={{ cursor: 'grab' }}>⇅</span>
-
               {/* метаданные */}
               {extra && (
                 <>
@@ -101,13 +107,6 @@ export default function DnD() {
             </div>
           );
         })}
-
-        <button
-          type="button"
-          onClick={() => append({ id: Date.now().toString(), amount: '' })}
-        >
-          Add Input
-        </button>
 
         <button type="submit">Submit</button>
       </form>

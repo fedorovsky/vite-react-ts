@@ -6,9 +6,9 @@ import DndMetadata from '@/variants/dnd-metadata.tsx';
 export default function App() {
   return (
     <div>
-      <Default />
+      {/*<Default />*/}
       {/*<Move />*/}
-      {/*<DnD />*/}
+      <DnD />
       {/*<DndMetadata />*/}
     </div>
   );
