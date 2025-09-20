@@ -29,7 +29,7 @@ const UserListRefetchOnMount = () => {
 
   // useFocusWithCooldown(refetch, 5000);
 
-  const handleClickUpdate = (id: number) => {
+  const handleClickUpdate = (id: string) => {
     console.log('id', id);
     updateUser({
       id: id,
@@ -37,7 +37,7 @@ const UserListRefetchOnMount = () => {
     });
   };
 
-  const handleClickDelete = (id: number) => {
+  const handleClickDelete = (id: string) => {
     console.log(id);
     deleteUser(id);
   };
@@ -46,7 +46,7 @@ const UserListRefetchOnMount = () => {
     addUser({ name: `added-${Date.now()}` });
   };
 
-  const toogleFocusOption = () => {
+  const toggleFocusOption = () => {
     setActiveFocus((s) => !s);
   };
 
@@ -67,7 +67,7 @@ const UserListRefetchOnMount = () => {
       <div>
         <p>refetchOnFocus: {isActiveFocus ? 'on' : 'off'}</p>
       </div>
-      <button onClick={toogleFocusOption}>Toggle Focus</button>
+      <button onClick={toggleFocusOption}>Toggle Focus</button>
       <button onClick={handleClickAdd}>Add User</button>
       <button onClick={handleRefetch}>refetch</button>
       <button onClick={handleInvalidateQueries}>invalidateQueries</button>

@@ -29,7 +29,7 @@ const UserList = () => {
 
   // useFocusWithCooldown(refetch, 5000);
 
-  const handleClickUpdate = (id: number) => {
+  const handleClickUpdate = (id: string) => {
     console.log('id', id);
     updateUser({
       id: id,
@@ -37,7 +37,7 @@ const UserList = () => {
     });
   };
 
-  const handleClickDelete = (id: number) => {
+  const handleClickDelete = (id: string) => {
     console.log(id);
     deleteUser(id);
   };
