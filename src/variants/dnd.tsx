@@ -73,8 +73,14 @@ export default function DnD() {
                 gap: '8px',
               }}
               draggable
-              onDragStart={() => setDragIndex(index)}
-              onDragOver={(e) => e.preventDefault()}
+              onDragStart={(e) => {
+                setDragIndex(index);
+                e.dataTransfer.effectAllowed = 'move';
+              }}
+              onDragOver={(e) => {
+                e.preventDefault();
+                e.dataTransfer.effectAllowed = 'move';
+              }}
               onDrop={() => {
                 if (dragIndex !== null && dragIndex !== index) {
                   move(dragIndex, index);
