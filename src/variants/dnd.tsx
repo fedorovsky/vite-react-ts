@@ -6,21 +6,26 @@ import {
   useFieldArray,
 } from 'react-hook-form';
 
-type InputField = { id: string; amount: string };
+type InputField = { id: number; amount: number };
+
 type FormValues = { rewards: InputField[] };
 
 // данные от сервера (для формы)
 const serverInputs: InputField[] = [
-  { id: '1', amount: 'from server 1' },
-  { id: '2', amount: 'from server 2' },
-  { id: '3', amount: 'from server 3' },
+  { id: 1, amount: 100 },
+  { id: 2, amount: 200 },
+  { id: 3, amount: 300 },
+  { id: 4, amount: 400 },
+  { id: 5, amount: 500 },
 ];
 
 // метаданные (иконка, заголовок и т.п.)
 const meta = [
-  { id: '1', icon: '🍎', title: 'Apple' },
-  { id: '2', icon: '🍌', title: 'Banana' },
-  { id: '3', icon: '🍇', title: 'Grapes' },
+  { id: 1, icon: '🍎', title: 'Apple' },
+  { id: 2, icon: '🍌', title: 'Banana' },
+  { id: 3, icon: '🍇', title: 'Grapes' },
+  { id: 4, icon: '🍉', title: 'Watermelon' },
+  { id: 5, icon: '🍓', title: 'Strawberry' },
 ];
 
 export default function DnD() {
@@ -50,7 +55,7 @@ export default function DnD() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <button
           type="button"
-          onClick={() => append({ id: Date.now().toString(), amount: '' })}
+          onClick={() => append({ id: Date.now(), amount: 0 })}
         >
           Add Input
         </button>
