@@ -106,7 +106,7 @@ export default function DndMetadataPicker() {
           fields={fields}
           onAdd={(id) => append({ id, amount: 0 })}
           onRemove={(id) => {
-            const field = fields.find((f) => f.id === id);
+            const field = fields.find((field) => field.id === id);
             if (field) {
               remove(field.id);
             }
