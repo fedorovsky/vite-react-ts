@@ -169,7 +169,7 @@ export default function DndMetadataPicker() {
                   }}
                   render={({ field, fieldState }) => (
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <input type="text" {...field} placeholder="Amount" />
+                      <input type="text" {...field} placeholder="amount" />
                       {fieldState.error && (
                         <span style={{ color: 'red', fontSize: '12px' }}>
                           {fieldState.error.message}
