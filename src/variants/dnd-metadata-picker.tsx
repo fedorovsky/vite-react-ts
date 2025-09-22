@@ -97,6 +97,11 @@ export default function DndMetadataPicker() {
 
   const onSubmit = (data: FormValues) => {
     console.log('Form Data:', data);
+    const normalized = data.rewards.map((item) => ({
+      ...item,
+      amount: Number(item.amount),
+    }));
+    console.log('Normalized Data:', normalized);
   };
 
   return (
@@ -158,7 +163,6 @@ export default function DndMetadataPicker() {
                   name={`rewards.${index}.amount`}
                   control={control}
                   rules={{
-                    required: 'Amount is required',
                     min: { value: 0, message: 'Must be at least 0' },
                     max: {
                       value: 100_000_000,
