@@ -104,7 +104,9 @@ export default function DndMetadataPicker() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <MetaPicker
           fields={fields}
-          onAdd={(id) => append({ id, amount: 0 })}
+          onAdd={(id) => {
+            append({ id, amount: 0 });
+          }}
           onRemove={(id) => {
             const index = fields.findIndex((field) => field.id === id);
             if (index >= 0) {
