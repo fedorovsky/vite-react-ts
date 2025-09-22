@@ -6,7 +6,7 @@ import {
   useFieldArray,
 } from 'react-hook-form';
 
-type InputField = { id: number; amount: number }; // id = бизнес id
+type InputField = { id: number; amount: number };
 type FormValues = { rewards: InputField[] };
 
 // данные от сервера (для формы)
@@ -88,10 +88,6 @@ export default function DndMetadataPicker() {
     name: 'rewards',
     keyName: 'key',
   });
-
-  console.log('=========');
-  console.log('fields', fields);
-  console.log('=========');
 
   const [dragIndex, setDragIndex] = React.useState<number | null>(null);
 
