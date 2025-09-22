@@ -115,12 +115,10 @@ export default function DndMetadataPicker() {
 
         <div style={{ border: '1px solid #ccc', padding: 8 }}>
           {fields.map((field, index) => {
-            const businessId = getValues(`rewards.${index}.id`);
-            const extra = meta.find((m) => m.id === businessId);
-
+            const extra = meta.find((m) => m.id === field.id);
             return (
               <div
-                key={field.id} // внутренний id useFieldArray
+                key={field.id}
                 style={{
                   marginBottom: 8,
                   padding: 8,
@@ -153,8 +151,6 @@ export default function DndMetadataPicker() {
                     <span>{extra.title}</span>
                   </>
                 )}
-
-                <span>Business ID: {businessId}</span>
 
                 <Controller
                   name={`rewards.${index}.amount`}
