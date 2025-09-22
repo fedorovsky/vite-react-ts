@@ -30,7 +30,7 @@ function MetaPicker({
 }: {
   fields: { id: number; amount: number; key: string }[];
   onAdd: (id: number) => void;
-  onRemove: (id: number) => void;
+  onRemove: (key: number) => void;
 }) {
   return (
     <div style={{ marginBottom: 16, border: '1px solid #ccc', padding: 8 }}>
@@ -81,7 +81,7 @@ export default function DndMetadataPicker() {
     defaultValues: { rewards: [] },
   });
 
-  const { control, handleSubmit, reset, getValues } = methods;
+  const { control, handleSubmit, reset } = methods;
 
   const { fields, append, remove, move } = useFieldArray({
     control,
@@ -106,10 +106,10 @@ export default function DndMetadataPicker() {
           fields={fields}
           onAdd={(id) => append({ id, amount: 0 })}
           onRemove={(id) => {
-            const index = fields.findIndex(
-              (_, idx) => getValues(`rewards.${idx}.id`) === id,
-            );
-            if (index !== -1) remove(index);
+            const field = fields.find((f) => f.id === id);
+            if (field) {
+              remove(field.id);
+            }
           }}
         />
 
