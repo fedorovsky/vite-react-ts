@@ -155,8 +155,25 @@ export default function DndMetadataPicker() {
                 <Controller
                   name={`rewards.${index}.amount`}
                   control={control}
-                  render={({ field }) => (
-                    <input type="text" {...field} placeholder="Amount" />
+                  rules={{
+                    required: 'Amount is required',
+                    min: { value: 0, message: 'Must be at least 0' },
+                    max: {
+                      value: 100_000_000,
+                      message: 'Must be less than or equal to 100,000,000',
+                    },
+                    validate: (value) =>
+                      !isNaN(Number(value)) || 'Must be a number',
+                  }}
+                  render={({ field, fieldState }) => (
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <input type="text" {...field} placeholder="Amount" />
+                      {fieldState.error && (
+                        <span style={{ color: 'red', fontSize: '12px' }}>
+                          {fieldState.error.message}
+                        </span>
+                      )}
+                    </div>
                   )}
                 />
 
