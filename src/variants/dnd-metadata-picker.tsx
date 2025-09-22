@@ -51,7 +51,7 @@ function MetaPicker({
             }}
           >
             <span>
-              {item.icon} {item.title}
+              {item.icon} {item.title} {item.id}
             </span>
             <div style={{ display: 'flex', gap: 8 }}>
               <button
@@ -106,9 +106,9 @@ export default function DndMetadataPicker() {
           fields={fields}
           onAdd={(id) => append({ id, amount: 0 })}
           onRemove={(id) => {
-            const field = fields.find((field) => field.id === id);
-            if (field) {
-              remove(field.id);
+            const index = fields.findIndex((field) => field.id === id);
+            if (index >= 0) {
+              remove(index);
             }
           }}
         />
