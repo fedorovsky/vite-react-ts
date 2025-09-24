@@ -77,6 +77,9 @@ function MetaPicker({
 }
 
 export default function DndMetadataPicker() {
+  const [dragIndex, setDragIndex] = React.useState<number | null>(null);
+  const [isFocusedInput, setIsFocusedInput] = React.useState(false);
+
   const methods = useForm<FormValues>({
     defaultValues: { rewards: [] },
   });
@@ -88,8 +91,6 @@ export default function DndMetadataPicker() {
     name: 'rewards',
     keyName: 'key',
   });
-
-  const [dragIndex, setDragIndex] = React.useState<number | null>(null);
 
   React.useEffect(() => {
     reset({ rewards: serverInputs });
@@ -136,7 +137,7 @@ export default function DndMetadataPicker() {
                   alignItems: 'center',
                   gap: '8px',
                 }}
-                draggable
+                draggable={!isFocusedInput}
                 onDragStart={(e) => {
                   setDragIndex(index);
                   e.dataTransfer.effectAllowed = 'move';
@@ -173,7 +174,17 @@ export default function DndMetadataPicker() {
                   }}
                   render={({ field, fieldState }) => (
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <input type="text" {...field} placeholder="amount" />
+                      <input
+                        type="text"
+                        {...field}
+                        placeholder="amount"
+                        onFocus={() => {
+                          setIsFocusedInput(true);
+                        }}
+                        onBlur={() => {
+                          setIsFocusedInput(false);
+                        }}
+                      />
                       {fieldState.error && (
                         <span style={{ color: 'red', fontSize: '12px' }}>
                           {fieldState.error.message}
