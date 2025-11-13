@@ -10,5 +10,5 @@ json-api: http://localhost:8000/
 
 ## RTK query  
 [infinity-scrolling](https://github.com/fedorovsky/vite-react-ts/tree/infinite-scrolling)  
-[infinite-query](https://github.com/fedorovsky/vite-react-ts/blob/infinite-query/src/app/posts/api/api.ts)
+[infinite-query](https://github.com/fedorovsky/vite-react-ts/blob/infinite-query/src/app/posts/api/api.ts)  
 [infinite-query-filters](https://github.com/fedorovsky/vite-react-ts/blob/infinite-query-filters/src/app/posts/api/api.ts)
