@@ -6,6 +6,7 @@ const postSchema = v.object({
   id: v.string(),
   title: v.string(),
   description: v.string(),
+  category: v.string(),
 });
 
 const PostsSchema = v.array(postSchema);
@@ -17,9 +18,13 @@ type PaginationParams = {
   limit: number; // Количество загружаемых постов за раз
 };
 
+type GetPostsArgs = {
+  category?: string; // Опциональный фильтр по категории
+};
+
 const postsApi = apiService.injectEndpoints({
   endpoints: (build) => ({
-    getPosts: build.infiniteQuery<Post[], void, PaginationParams>({
+    getPosts: build.infiniteQuery<Post[], GetPostsArgs, PaginationParams>({
       responseSchema: PostsSchema,
       infiniteQueryOptions: {
         initialPageParam: {
@@ -27,8 +32,8 @@ const postsApi = apiService.injectEndpoints({
           limit: 2, // Загружаем по 2 поста за раз
         },
         getNextPageParam: (
-          lastPage,
-          allPages,
+          _lastPage,
+          _allPages,
           lastPageParam,
           allPageParams,
         ) => {
@@ -39,10 +44,21 @@ const postsApi = apiService.injectEndpoints({
           };
         },
       },
-      query: ({ pageParam: { offset, limit } }) => ({
-        url: `posts?_start=${offset}&_limit=${limit}`, // Формируем URL для запроса с пагинацией
-        method: 'GET',
-      }),
+      query: ({ pageParam: { offset, limit }, queryArg: { category } }) => {
+        const params = new URLSearchParams({
+          _start: String(offset),
+          _limit: String(limit),
+        });
+
+        if (category) {
+          params.set('category', category);
+        }
+
+        return {
+          url: `posts?${params}`, // Формируем URL для запроса с пагинацией
+          method: 'GET',
+        };
+      },
       providesTags: ['Posts'], // Позволяет инвалидировать кешированные данные
     }),
   }),
