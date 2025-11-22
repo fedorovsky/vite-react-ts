@@ -5,6 +5,6 @@ export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   children?: React.ReactNode;
 }
 
-export const Title = ({ children }: TitleProps) => {
-  return <Styled.Title>{children}</Styled.Title>;
+export const Title = (props: TitleProps) => {
+  return <Styled.Title {...props} />;
 };

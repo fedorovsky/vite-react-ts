@@ -5,12 +5,3 @@ export const Root = styled.div`
   padding: 10px;
   border: 1px solid black;
 `;
-
-export const Title = styled.h2`
-  font-size: 16px;
-  color: red;
-`;
-
-export const Description = styled.p`
-  font-size: 16px;
-`;

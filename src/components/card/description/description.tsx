@@ -6,6 +6,6 @@ export interface DescriptionProps
   children?: React.ReactNode;
 }
 
-export const Description = ({ children }: DescriptionProps) => {
-  return <Styled.Description>{children}</Styled.Description>;
+export const Description = (props: DescriptionProps) => {
+  return <Styled.Description {...props} />;
 };
