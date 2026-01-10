@@ -1,5 +1,8 @@
 json-api: http://localhost:8000/  
 
+## Playground  
+[playground](https://github.com/fedorovsky/vite-react-ts/tree/playground)  
+
 ## General examples  
 [tailwind](https://github.com/fedorovsky/vite-react-ts/tree/tailwind)  
 [shadcn](https://github.com/fedorovsky/vite-react-ts/tree/shadcn)  
