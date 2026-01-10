@@ -1,3 +1,9 @@
+import { Counter } from '@/shared/components/counter';
+
 export default function App() {
-  return <div>hello</div>;
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
 }
