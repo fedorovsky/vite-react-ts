@@ -16,3 +16,6 @@ json-api: http://localhost:8000/
 [infinity-scrolling](https://github.com/fedorovsky/vite-react-ts/tree/infinite-scrolling)  
 [infinite-query](https://github.com/fedorovsky/vite-react-ts/blob/infinite-query/src/app/posts/api/api.ts)  
 [infinite-query-filters](https://github.com/fedorovsky/vite-react-ts/blob/infinite-query-filters/src/app/posts/api/api.ts)
+
+## Hooks  
+[use-tick](https://github.com/fedorovsky/vite-react-ts/blob/use-tick/src/shared/hooks/use-tick.ts)  
