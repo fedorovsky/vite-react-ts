@@ -1,17 +1,14 @@
 import { useTick } from '@/shared/hooks/use-tick.ts';
+import { generateUsers } from '@/shared/lib/mock/generate-users.ts';
 
 const TICK_INTERVAL_MS = 1_000;
 
-const users = [
-  { id: 1, name: 'User 1' },
-  { id: 2, name: 'User 2' },
-  { id: 3, name: 'User 3' },
-  { id: 4, name: 'User 4' },
-  { id: 5, name: 'User 5' },
-];
+const users = generateUsers(1_000);
 
 export const Counter = () => {
-  const { tick, start, stop } = useTick(TICK_INTERVAL_MS);
+  const { tick, start, stop } = useTick(TICK_INTERVAL_MS, {
+    pauseOnBlur: false,
+  });
 
   console.log('==============');
   console.log('tick', tick);
@@ -33,7 +30,7 @@ export const Counter = () => {
       <ul>
         {usersWithDate.map((user) => (
           <li key={user.id}>
-            <div>Name: {user.name}</div>
+            <h2>Name: {user.name}</h2>
             <div>Date: {user.date.toString()}</div>
           </li>
         ))}
