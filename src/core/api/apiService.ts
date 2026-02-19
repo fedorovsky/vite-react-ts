@@ -11,7 +11,7 @@ export const apiService = createApi({
 
     // Используем fetchBaseQuery с динамическим baseUrl
     const baseQuery = fetchBaseQuery({
-      baseUrl: 'http://localhost:8000/',
+      baseUrl: '/',
       prepareHeaders: (headers, { getState }) => {
         console.log('======================');
         console.log('prepareHeaders');
@@ -23,7 +23,7 @@ export const apiService = createApi({
     });
     return baseQuery(args, api, extraOptions);
   },
-  tagTypes: ['User'],
+  tagTypes: ['User', 'UserList', 'EdgeConfig'],
   refetchOnReconnect: true,
   endpoints: () => ({}),
 });

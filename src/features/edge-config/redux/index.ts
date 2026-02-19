@@ -1,4 +1,4 @@
 export * from './slice';
 export * as types from './types.ts';
 export * as selectors from './selectors';
-export * as asyncActions from './asyncActions.ts';
+export * as asyncActions from './async-actions.ts';

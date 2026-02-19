@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { _SLICE_NAME_ } from './constants';
-import { getUserList } from './asyncActions.ts';
-import { UserSlice } from './types.ts';
+import { getConfig } from './async-actions.ts';
+import { ConfigSlice } from './types.ts';
 
-const initialState: UserSlice = {
+const initialState: ConfigSlice = {
   status: 'idle',
-  userList: [],
+  data: {},
 };
 
 const slice = createSlice({
@@ -14,14 +14,14 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getUserList.pending, (state) => {
+      .addCase(getConfig.pending, (state) => {
         state.status = 'pending';
       })
-      .addCase(getUserList.fulfilled, (state, action) => {
+      .addCase(getConfig.fulfilled, (state, action) => {
         state.status = 'fulfilled';
-        state.userList = action.payload;
+        state.data = action.payload;
       })
-      .addCase(getUserList.rejected, (state) => {
+      .addCase(getConfig.rejected, (state) => {
         state.status = 'rejected';
       });
   },

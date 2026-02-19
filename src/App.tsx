@@ -1,21 +1,18 @@
-import { UserList } from '@/features/user';
-import { useAppDispatch } from '@/core/hooks/useAppDispatch';
-import { userModule } from '@/features/user';
+import * as React from 'react';
+import { EdgeConfig } from '@/features/edge-config';
 
 export default function App() {
-  const dispatch = useAppDispatch();
-
-  const handleFetchUserList = () => {
-    dispatch(userModule.asyncActions.getUserList());
-  };
+  const [isVisibleConfig, setIsVisibleConfig] = React.useState(true);
 
   return (
     <div>
       <div>
-        <button onClick={handleFetchUserList}>Fetch User List</button>
+        <button onClick={() => setIsVisibleConfig((prev) => !prev)}>
+          {isVisibleConfig ? 'Hide EdgeConfig' : 'Show EdgeConfig'}
+        </button>
       </div>
       <br />
-      <UserList />
+      {isVisibleConfig && <EdgeConfig />}
     </div>
   );
 }
