@@ -13,7 +13,7 @@ export const edgeConfigApi = apiService.injectEndpoints({
         body: {},
       }),
       providesTags: ['EdgeConfig'],
-      keepUnusedDataFor: 1,
+      keepUnusedDataFor: 60,
     }),
   }),
 });
