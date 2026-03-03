@@ -23,7 +23,7 @@ export const apiService = createApi({
     });
     return baseQuery(args, api, extraOptions);
   },
-  tagTypes: ['User'],
+  tagTypes: ['UserList'],
   refetchOnReconnect: true,
   endpoints: () => ({}),
 });

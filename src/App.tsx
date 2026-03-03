@@ -1,7 +1,6 @@
 import { useAppDispatch } from '@/core/hooks/useAppDispatch';
 import { userApi } from '@/app/user/api';
 import { UserList } from '@/app/user';
-import UserListRefetchOnMount from '@/app/user/components/user-list-refetch-on-mount';
 import { ToggleContent } from '@/shared/component/toggle-content';
 
 export default function App() {
@@ -17,12 +16,6 @@ export default function App() {
       <UserList />
       <ToggleContent text="UserList">
         <UserList />
-      </ToggleContent>
-      <ToggleContent text="UserList">
-        <UserList />
-      </ToggleContent>
-      <ToggleContent text="UserList - refetchOnMountOrArgChange: 10">
-        <UserListRefetchOnMount />
       </ToggleContent>
     </div>
   );

@@ -17,13 +17,7 @@ export const userApi = apiService.injectEndpoints({
       query: () => 'users',
       keepUnusedDataFor: 30,
       responseSchema: usersSchema,
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: 'User' as const, id })),
-              { type: 'User', id: 'LIST' },
-            ]
-          : [{ type: 'User', id: 'LIST' }],
+      providesTags: ['UserList'],
     }),
     updateUser: builder.mutation({
       query: (updatedUser) => ({
@@ -33,26 +27,7 @@ export const userApi = apiService.injectEndpoints({
           name: updatedUser.name,
         },
       }),
-      // Оптимистическое начальное обновление
-      onQueryStarted: async (updatedUser, { dispatch, queryFulfilled }) => {
-        // Оптимистическое обновление: начало
-        const patchResult = dispatch(
-          userApi.util.updateQueryData('getUsers', undefined, (draftUsers) => {
-            const user = draftUsers.find((u) => u.id === updatedUser.id);
-            if (user) {
-              // Обновляем имя
-              user.name = updatedUser.name;
-            }
-          }),
-        );
-
-        try {
-          await queryFulfilled;
-        } catch {
-          patchResult.undo();
-        }
-        // Оптимистическое обновление: конец
-      },
+      invalidatesTags: ['UserList'],
     }),
     addUser: builder.mutation({
       query: (newUser) => ({
@@ -63,51 +38,14 @@ export const userApi = apiService.injectEndpoints({
           ...newUser,
         },
       }),
-      onQueryStarted: async (newUser, { dispatch, queryFulfilled }) => {
-        // Здесь начинается оптимистическое обновление
-        const patchResult = dispatch(
-          userApi.util.updateQueryData('getUsers', undefined, (draftUsers) => {
-            draftUsers.push({
-              id: uuidv4(),
-              ...newUser,
-            });
-          }),
-        );
-
-        try {
-          await queryFulfilled;
-        } catch {
-          patchResult.undo(); // В случае ошибки откатываем изменения
-        }
-        // Оптимистическое обновление заканчивается здесь
-      },
-      invalidatesTags: [{ type: 'User', id: 'LIST' }],
+      invalidatesTags: ['UserList'],
     }),
     deleteUser: builder.mutation({
       query: (userId) => ({
         url: `users/${userId}`,
         method: 'DELETE',
       }),
-      onQueryStarted: async (userId, { dispatch, queryFulfilled }) => {
-        // Запоминаем текущее состояние для возможного отката
-        const patchResult = dispatch(
-          userApi.util.updateQueryData('getUsers', undefined, (draft) => {
-            const index = draft.findIndex((user) => user.id === userId);
-            if (index !== -1) {
-              draft.splice(index, 1);
-            }
-          }),
-        );
-
-        try {
-          // Ждем завершения запроса
-          await queryFulfilled;
-        } catch {
-          // В случае ошибки используем undo для отката изменений
-          patchResult.undo();
-        }
-      },
-      // Не указываем invalidatesTags здесь, так как будем обрабатывать кэш вручную
+      invalidatesTags: ['UserList'],
     }),
   }),
 });
