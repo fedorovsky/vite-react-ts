@@ -1,20 +1,12 @@
 {
   "users": [
     {
-      "name": "updated-1777294047765",
-      "id": "8926fcfa-4beb-4ff8-a82e-28f1b78ff856"
+      "id": "mhbDyxVKAb8",
+      "name": "added-1777295080751"
     },
     {
-      "id": "2f754987-4ea9-482e-ae4d-db2688ac2bb7",
-      "name": "added-1758100637496"
-    },
-    {
-      "id": "bYIwuRCTVPg",
-      "name": "added-1777294050906"
-    },
-    {
-      "id": "J2G2rdgkbcw",
-      "name": "added-1777294059998"
+      "name": "updated-1777295122463",
+      "id": "0NwaOt8eSHI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
