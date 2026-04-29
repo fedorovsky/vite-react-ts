@@ -53,6 +53,15 @@ export function Root<Value = unknown, Multiple extends boolean = false>(
 
   const triggerRef = React.useRef<HTMLButtonElement | null>(null);
   const popupRef = React.useRef<HTMLDivElement | null>(null);
+  const itemValuesRef = React.useRef<unknown[]>([]);
+
+  const registerItem = React.useCallback((value: unknown) => {
+    itemValuesRef.current = [...itemValuesRef.current, value];
+  }, []);
+
+  const unregisterItem = React.useCallback((value: unknown) => {
+    itemValuesRef.current = itemValuesRef.current.filter((v) => v !== value);
+  }, []);
 
   const setOpen = React.useCallback(
     (nextOpen: boolean) => {
@@ -87,8 +96,11 @@ export function Root<Value = unknown, Multiple extends boolean = false>(
       setActiveValue,
       triggerRef,
       popupRef,
+      itemValuesRef,
+      registerItem,
+      unregisterItem,
     }),
-    [open, value, disabled, multiple, setValue, setOpen, activeValue],
+    [open, value, disabled, multiple, setValue, setOpen, activeValue, registerItem, unregisterItem],
   );
 
   return (

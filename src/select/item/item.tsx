@@ -20,7 +20,16 @@ export const Item = React.memo(
         multiple,
         activeValue,
         setActiveValue,
+        registerItem,
+        unregisterItem,
       } = useRootContext();
+
+      React.useEffect(() => {
+        registerItem(value);
+        return () => {
+          unregisterItem(value);
+        };
+      }, [value, registerItem, unregisterItem]);
 
       // True if this item's value is part of the current selection
       const selected = multiple

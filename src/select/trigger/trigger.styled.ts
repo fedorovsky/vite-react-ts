@@ -21,7 +21,7 @@ export const Trigger = styled.button<{ $open?: boolean }>`
   cursor: pointer;
   font-size: 14px;
   line-height: 1.5;
-  min-width: 150px;
+  width: 100%;
   outline: none;
   user-select: none;
 

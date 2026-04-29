@@ -1,3 +1,4 @@
+import './global.css';
 import { scan } from 'react-scan';
 import React from 'react';
 import ReactDOM from 'react-dom/client';

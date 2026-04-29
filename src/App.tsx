@@ -7,6 +7,21 @@ const fruits = [
   { value: 'cherry', label: 'Cherry 🍒' },
   { value: 'grape', label: 'Grape 🍇' },
   { value: 'mango', label: 'Mango 🥭' },
+  { value: 'orange', label: 'Orange 🍊' },
+  { value: 'lemon', label: 'Lemon 🍋' },
+  { value: 'pear', label: 'Pear 🍐' },
+  { value: 'peach', label: 'Peach 🍑' },
+  { value: 'watermelon', label: 'Watermelon 🍉' },
+  { value: 'kiwi', label: 'Kiwi 🥝' },
+  { value: 'pineapple', label: 'Pineapple 🍍' },
+  { value: 'plum', label: 'Plum 🍑' },
+  { value: 'strawberry', label: 'Strawberry 🍓' },
+  { value: 'blueberry', label: 'Blueberry 🫐' },
+  { value: 'raspberry', label: 'Raspberry 🍇' },
+  { value: 'pomegranate', label: 'Pomegranate 🍎' },
+  { value: 'apricot', label: 'Apricot 🍑' },
+  { value: 'lime', label: 'Lime 🟩' },
+  { value: 'fig', label: 'Fig 🟣' },
 ];
 
 function ControlledExample() {

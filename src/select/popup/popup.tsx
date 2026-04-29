@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useRootContext } from '../root';
 import * as Styled from './popup.styled';
+import { useKeyboardNavigation } from './use-keyboard-navigation';
 
 export interface PopupProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
@@ -9,6 +10,8 @@ export interface PopupProps extends React.HTMLAttributes<HTMLDivElement> {
 export function Popup(props: PopupProps) {
   const { children, ...rest } = props;
   const { open, popupRef, triggerRef } = useRootContext();
+
+  useKeyboardNavigation();
 
   const [position, setPosition] = React.useState<React.CSSProperties>({});
 
@@ -25,6 +28,12 @@ export function Popup(props: PopupProps) {
     });
   }, [open, triggerRef]);
 
+  React.useEffect(() => {
+    if (open) {
+      popupRef.current?.focus();
+    }
+  }, [open, popupRef]);
+
   if (!open) {
     return null;
   }
@@ -33,6 +42,7 @@ export function Popup(props: PopupProps) {
     <Styled.Popup
       $open={open}
       ref={popupRef}
+      tabIndex={-1}
       style={{ ...position }}
       {...rest}
     >
