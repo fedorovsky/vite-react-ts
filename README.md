@@ -11,6 +11,7 @@ json-api: http://localhost:8000/
 [global-modals](https://github.com/fedorovsky/vite-react-ts/tree/global-modals)  
 [use-query](https://github.com/fedorovsky/vite-react-ts/tree/use-query)  
 [slot-props](https://github.com/fedorovsky/vite-react-ts/blob/slot-props/src/components/card/card.tsx)  
+[slot-props-with-generic](https://github.com/fedorovsky/vite-react-ts/tree/slot-props-with-generic)  
 
 ## RTK query  
 [infinity-scrolling](https://github.com/fedorovsky/vite-react-ts/tree/infinite-scrolling)  
