@@ -1,35 +1,45 @@
 import * as React from 'react';
-import { Root, type RootProps } from './root';
-import { Title, type TitleProps } from './title';
-import { Description, type DescriptionProps } from './description';
+import { Root } from './root';
+import { Title } from './title';
+import { Description } from './description';
 
-export interface CardProps {
+export interface CardProps<
+  TRoot extends React.ElementType = typeof Root,
+  TTitle extends React.ElementType = typeof Title,
+  TDescription extends React.ElementType = typeof Description,
+> {
   title: string;
   description: string;
+
   /**
    * Slots
    */
   slots?: {
-    root?: React.ElementType;
-    title?: React.ElementType;
-    description?: React.ElementType;
+    root?: TRoot;
+    title?: TTitle;
+    description?: TDescription;
   };
+
   /**
    * Slot Props
    */
   slotProps?: {
-    root?: RootProps;
-    title?: TitleProps;
-    description?: DescriptionProps;
+    root?: React.ComponentPropsWithoutRef<TRoot>;
+    title?: React.ComponentPropsWithoutRef<TTitle>;
+    description?: React.ComponentPropsWithoutRef<TDescription>;
   };
 }
 
-export const Card = ({
+export const Card = <
+  TRoot extends React.ElementType = typeof Root,
+  TTitle extends React.ElementType = typeof Title,
+  TDescription extends React.ElementType = typeof Description,
+>({
   title,
   description,
   slots = {},
   slotProps = {},
-}: CardProps) => {
+}: CardProps<TRoot, TTitle, TDescription>) => {
   const {
     root: RootSlot = Root,
     title: TitleSlot = Title,
@@ -47,6 +57,7 @@ export const Card = ({
       <TitleSlot {...titleSlotProps}>
         {titleSlotProps?.children ?? title}
       </TitleSlot>
+
       <DescriptionSlot {...descriptionSlotProps}>
         {descriptionSlotProps?.children ?? description}
       </DescriptionSlot>

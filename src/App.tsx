@@ -2,8 +2,15 @@ import * as React from 'react';
 import { styled } from 'styled-components';
 import { Card, Root } from '@/components/card';
 
-const CustomTitle = ({ children }: { children: React.ReactNode }) => (
-  <div data-custom="custom">{children}</div>
+interface CustomTitle {
+  children: React.ReactNode;
+  color?: 'red' | 'blue';
+}
+
+const CustomTitle = ({ children, color }: CustomTitle) => (
+  <div style={{ color }} data-custom="custom">
+    {children}
+  </div>
 );
 
 const CustomRoot = styled(Root)`
@@ -44,6 +51,7 @@ export default function App() {
           },
           title: {
             children: 'Slot Custom Title',
+            color: 'blue',
           },
         }}
       />
