@@ -1,80 +1,93 @@
-import { Toaster, toaster } from './toaster';
+import { Alert, alertApi } from './alert';
 import styled from 'styled-components';
 
 export default function App() {
-  const handleShowSuccessToast = () => {
-    const toastId = toaster.success({
-      title: 'Success',
+  const handleShowRegularAlert = () => {
+    const alertId = alertApi.regular({
+      label: 'Regular',
+      description: 'This is a regular alert.',
+    });
+
+    console.log('Regular alert id:', alertId);
+  };
+
+  const handleShowSuccessAlert = () => {
+    const alertId = alertApi.success({
+      label: 'Success',
       description: 'Your changes have been saved.',
     });
 
-    console.log('Success toast id:', toastId);
+    console.log('Success alert id:', alertId);
   };
 
-  const handleShowErrorToast = () => {
-    const toastId = toaster.error({
-      title: 'Error',
+  const handleShowErrorAlert = () => {
+    const alertId = alertApi.error({
+      label: 'Error',
       description: 'Something went wrong. Please try again.',
     });
 
-    console.log('Error toast id:', toastId);
+    console.log('Error alert id:', alertId);
   };
 
-  const handleShowWarningToast = () => {
-    const toastId = toaster.warning({
-      title: 'Warning',
+  const handleShowInfoAlert = () => {
+    const alertId = alertApi.info({
+      label: 'Info',
+      description: 'Here is some helpful context.',
+    });
+
+    console.log('Info alert id:', alertId);
+  };
+
+  const handleShowWarningAlert = () => {
+    const alertId = alertApi.warning({
+      label: 'Warning',
       description: 'Please check the entered data.',
     });
 
-    console.log('Warning toast id:', toastId);
+    console.log('Warning alert id:', alertId);
   };
 
-  const handleShowDefaultToast = () => {
-    const toastId = toaster.default({
-      title: 'Default',
-      description: 'This is a default notification.',
-    });
+  const handleClearAlerts = () => {
+    alertApi.clear();
 
-    console.log('Default toast id:', toastId);
-  };
-
-  const handleClearToasts = () => {
-    toaster.clear();
-
-    console.log('All toasts cleared');
+    console.log('All alerts cleared');
   };
 
   return (
     <Page>
       <Card>
-        <Title>Toast example</Title>
+        <Title>Alert example</Title>
 
-        <Description>Simple toaster with four methods.</Description>
+        <Description>Simple alert with five variants.</Description>
 
         <Actions>
-          <Button type="button" onClick={handleShowSuccessToast}>
+          <Button type="button" onClick={handleShowRegularAlert}>
+            Regular
+          </Button>
+
+          <Button type="button" onClick={handleShowSuccessAlert}>
             Success
           </Button>
 
-          <Button type="button" onClick={handleShowErrorToast}>
+          <Button type="button" onClick={handleShowErrorAlert}>
             Error
           </Button>
 
-          <Button type="button" onClick={handleShowWarningToast}>
+          <Button type="button" onClick={handleShowInfoAlert}>
+            Info
+          </Button>
+
+          <Button type="button" onClick={handleShowWarningAlert}>
             Warning
           </Button>
 
-          <Button type="button" onClick={handleShowDefaultToast}>
-            Default
-          </Button>
-
-          <Button type="button" onClick={handleClearToasts}>
+          <Button type="button" onClick={handleClearAlerts}>
             Clear
           </Button>
         </Actions>
       </Card>
 
-      <Toaster />
+      <Alert />
     </Page>
   );
 }

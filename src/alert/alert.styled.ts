@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import type { ToastType } from './store.ts';
+import type { AlertVariant } from './alert.api.ts';
 
 const enterAnimation = keyframes`
   from {
@@ -13,8 +13,8 @@ const enterAnimation = keyframes`
   }
 `;
 
-const toastTypeColors: Record<
-  ToastType,
+const alertVariantColors: Record<
+  AlertVariant,
   {
     background: string;
     border: string;
@@ -22,11 +22,11 @@ const toastTypeColors: Record<
     accent: string;
   }
 > = {
-  success: {
-    background: '#f0fdf4',
-    border: '#bbf7d0',
-    text: '#14532d',
-    accent: '#16a34a',
+  regular: {
+    background: '#ffffff',
+    border: '#e2e8f0',
+    text: '#0f172a',
+    accent: '#64748b',
   },
   error: {
     background: '#fef2f2',
@@ -34,21 +34,27 @@ const toastTypeColors: Record<
     text: '#7f1d1d',
     accent: '#dc2626',
   },
+  success: {
+    background: '#f0fdf4',
+    border: '#bbf7d0',
+    text: '#14532d',
+    accent: '#16a34a',
+  },
+  info: {
+    background: '#eff6ff',
+    border: '#bfdbfe',
+    text: '#1e3a8a',
+    accent: '#2563eb',
+  },
   warning: {
     background: '#fffbeb',
     border: '#fde68a',
     text: '#78350f',
     accent: '#d97706',
   },
-  default: {
-    background: '#ffffff',
-    border: '#e2e8f0',
-    text: '#0f172a',
-    accent: '#64748b',
-  },
 };
 
-export const ToastViewport = styled.div`
+export const AlertViewport = styled.div`
   position: fixed;
   right: 16px;
   bottom: 16px;
@@ -69,8 +75,8 @@ export const ToastViewport = styled.div`
   }
 `;
 
-export const ToastRoot = styled.div<{
-  $type: ToastType;
+export const AlertRoot = styled.div<{
+  $variant: AlertVariant;
 }>`
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -79,11 +85,12 @@ export const ToastRoot = styled.div<{
 
   width: 100%;
   padding: 14px;
-  border: 1px solid ${({ $type }) => toastTypeColors[$type].border};
+  border: 1px solid
+    ${({ $variant }) => alertVariantColors[$variant].border};
   border-radius: 14px;
 
-  background: ${({ $type }) => toastTypeColors[$type].background};
-  color: ${({ $type }) => toastTypeColors[$type].text};
+  background: ${({ $variant }) => alertVariantColors[$variant].background};
+  color: ${({ $variant }) => alertVariantColors[$variant].text};
 
   box-shadow:
     0 16px 40px rgb(15 23 42 / 14%),
@@ -98,8 +105,8 @@ export const ToastRoot = styled.div<{
   }
 `;
 
-export const ToastIcon = styled.div<{
-  $type: ToastType;
+export const AlertIcon = styled.div<{
+  $variant: AlertVariant;
 }>`
   display: grid;
   place-items: center;
@@ -108,7 +115,7 @@ export const ToastIcon = styled.div<{
   height: 24px;
   border-radius: 999px;
 
-  background: ${({ $type }) => toastTypeColors[$type].accent};
+  background: ${({ $variant }) => alertVariantColors[$variant].accent};
   color: #ffffff;
 
   font-size: 13px;
@@ -116,25 +123,25 @@ export const ToastIcon = styled.div<{
   line-height: 1;
 `;
 
-export const ToastContent = styled.div`
+export const AlertContent = styled.div`
   display: grid;
   gap: 4px;
   min-width: 0;
 `;
 
-export const ToastTitle = styled.div`
+export const AlertTitle = styled.div`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.35;
 `;
 
-export const ToastDescription = styled.div`
+export const AlertDescription = styled.div`
   font-size: 14px;
   line-height: 1.45;
   opacity: 0.9;
 `;
 
-export const ToastCloseButton = styled.button`
+export const AlertCloseButton = styled.button`
   width: 28px;
   height: 28px;
 
