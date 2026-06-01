@@ -1,80 +1,80 @@
-import { Toaster, toaster } from './toaster';
+import { Alert, alert } from './alert';
 import styled from 'styled-components';
 
 export default function App() {
-  const handleShowSuccessToast = () => {
-    const toastId = toaster.success({
+  const handleShowSuccessAlert = () => {
+    const alertId = alert.success({
       title: 'Success',
       description: 'Your changes have been saved.',
     });
 
-    console.log('Success toast id:', toastId);
+    console.log('Success alert id:', alertId);
   };
 
-  const handleShowErrorToast = () => {
-    const toastId = toaster.error({
+  const handleShowErrorAlert = () => {
+    const alertId = alert.error({
       title: 'Error',
       description: 'Something went wrong. Please try again.',
     });
 
-    console.log('Error toast id:', toastId);
+    console.log('Error alert id:', alertId);
   };
 
-  const handleShowWarningToast = () => {
-    const toastId = toaster.warning({
+  const handleShowWarningAlert = () => {
+    const alertId = alert.warning({
       title: 'Warning',
       description: 'Please check the entered data.',
     });
 
-    console.log('Warning toast id:', toastId);
+    console.log('Warning alert id:', alertId);
   };
 
-  const handleShowDefaultToast = () => {
-    const toastId = toaster.default({
+  const handleShowDefaultAlert = () => {
+    const alertId = alert.default({
       title: 'Default',
-      description: 'This is a default notification.',
+      description: 'This is a default alert.',
     });
 
-    console.log('Default toast id:', toastId);
+    console.log('Default alert id:', alertId);
   };
 
-  const handleClearToasts = () => {
-    toaster.clear();
+  const handleClearAlerts = () => {
+    alert.clear();
 
-    console.log('All toasts cleared');
+    console.log('All alerts cleared');
   };
 
   return (
     <Page>
       <Card>
-        <Title>Toast example</Title>
+        <Title>Alert example</Title>
 
-        <Description>Simple toaster with four methods.</Description>
+        <Description>Simple alert with four methods.</Description>
 
         <Actions>
-          <Button type="button" onClick={handleShowSuccessToast}>
+          <Button type="button" onClick={handleShowSuccessAlert}>
             Success
           </Button>
 
-          <Button type="button" onClick={handleShowErrorToast}>
+          <Button type="button" onClick={handleShowErrorAlert}>
             Error
           </Button>
 
-          <Button type="button" onClick={handleShowWarningToast}>
+          <Button type="button" onClick={handleShowWarningAlert}>
             Warning
           </Button>
 
-          <Button type="button" onClick={handleShowDefaultToast}>
+          <Button type="button" onClick={handleShowDefaultAlert}>
             Default
           </Button>
 
-          <Button type="button" onClick={handleClearToasts}>
+          <Button type="button" onClick={handleClearAlerts}>
             Clear
           </Button>
         </Actions>
       </Card>
 
-      <Toaster />
+      <Alert />
     </Page>
   );
 }

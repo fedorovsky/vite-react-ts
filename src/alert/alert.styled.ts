@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import type { ToastType } from './store.ts';
+import type { AlertType } from './store.ts';
 
 const enterAnimation = keyframes`
   from {
@@ -13,8 +13,8 @@ const enterAnimation = keyframes`
   }
 `;
 
-const toastTypeColors: Record<
-  ToastType,
+const alertTypeColors: Record<
+  AlertType,
   {
     background: string;
     border: string;
@@ -48,7 +48,7 @@ const toastTypeColors: Record<
   },
 };
 
-export const ToastViewport = styled.div`
+export const AlertViewport = styled.div`
   position: fixed;
   right: 16px;
   bottom: 16px;
@@ -69,8 +69,8 @@ export const ToastViewport = styled.div`
   }
 `;
 
-export const ToastRoot = styled.div<{
-  $type: ToastType;
+export const AlertRoot = styled.div<{
+  $type: AlertType;
 }>`
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -79,11 +79,11 @@ export const ToastRoot = styled.div<{
 
   width: 100%;
   padding: 14px;
-  border: 1px solid ${({ $type }) => toastTypeColors[$type].border};
+  border: 1px solid ${({ $type }) => alertTypeColors[$type].border};
   border-radius: 14px;
 
-  background: ${({ $type }) => toastTypeColors[$type].background};
-  color: ${({ $type }) => toastTypeColors[$type].text};
+  background: ${({ $type }) => alertTypeColors[$type].background};
+  color: ${({ $type }) => alertTypeColors[$type].text};
 
   box-shadow:
     0 16px 40px rgb(15 23 42 / 14%),
@@ -98,8 +98,8 @@ export const ToastRoot = styled.div<{
   }
 `;
 
-export const ToastIcon = styled.div<{
-  $type: ToastType;
+export const AlertIcon = styled.div<{
+  $type: AlertType;
 }>`
   display: grid;
   place-items: center;
@@ -108,7 +108,7 @@ export const ToastIcon = styled.div<{
   height: 24px;
   border-radius: 999px;
 
-  background: ${({ $type }) => toastTypeColors[$type].accent};
+  background: ${({ $type }) => alertTypeColors[$type].accent};
   color: #ffffff;
 
   font-size: 13px;
@@ -116,25 +116,25 @@ export const ToastIcon = styled.div<{
   line-height: 1;
 `;
 
-export const ToastContent = styled.div`
+export const AlertContent = styled.div`
   display: grid;
   gap: 4px;
   min-width: 0;
 `;
 
-export const ToastTitle = styled.div`
+export const AlertTitle = styled.div`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.35;
 `;
 
-export const ToastDescription = styled.div`
+export const AlertDescription = styled.div`
   font-size: 14px;
   line-height: 1.45;
   opacity: 0.9;
 `;
 
-export const ToastCloseButton = styled.button`
+export const AlertCloseButton = styled.button`
   width: 28px;
   height: 28px;
 
