@@ -47,7 +47,7 @@ type CardComponent = <
   TDescription extends React.ElementType = typeof Description,
 >(
   props: CardProps<TRoot, TTitle, TDescription> & {
-    ref?: React.Ref<HTMLDivElement>;
+    ref?: React.Ref<React.ElementRef<TRoot>>;
   },
 ) => React.ReactElement | null;
 
